@@ -33,4 +33,4 @@ public class List_inChainOfNodes{
      public boolean addAsHead( Object val) {
         return true;
      }
-}\
+}
