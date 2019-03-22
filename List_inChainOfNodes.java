@@ -8,13 +8,23 @@ public class List_inChainOfNodes{
     /**
       Construct an empty list
      */
-
+     public List_inChainOfNodes() {
+     }
 
     /**
       @return the number of elements in this list
      */
-    // public int size() {
-    // }
+    public int size() {
+      Node holdReference = headReference;
+      int size = 0;
+
+      while (holdReference != null) {
+        size++;
+        holdReference = holdReference.getReferenceToNextNode();
+      }
+
+      return size;
+    }
 
 
      /**
