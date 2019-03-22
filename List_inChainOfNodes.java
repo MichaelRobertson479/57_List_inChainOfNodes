@@ -32,8 +32,18 @@ public class List_inChainOfNodes{
        format:
            # elements [element0,element1,element2,]
       */
-    // public String toString() {
-    // }
+    public String toString() {
+      Node holdReference = headReference;
+      String s = "[";
+
+      while (holdReference != null) {
+        s += holdReference + ",";
+      }
+
+      s += "]";
+
+      return s;
+    }
 
 
     /**
@@ -41,6 +51,8 @@ public class List_inChainOfNodes{
       @return true, in keeping with conventions yet to be discussed
      */
      public boolean addAsHead( Object val) {
+
+
         return true;
      }
 }
