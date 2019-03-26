@@ -34,10 +34,11 @@ public class List_inChainOfNodes{
       */
     public String toString() {
       Node holdReference = headReference;
-      String s = "[";
+      String s = size() + "[";
 
       while (holdReference != null) {
-        s += holdReference + ",";
+        s += (String) holdReference.getCargoReference() + ",";
+	      holdReference = holdReference.getReferenceToNextNode();
       }
 
       s += "]";
@@ -45,13 +46,44 @@ public class List_inChainOfNodes{
       return s;
     }
 
+    public Object set (int index, Object val) {
+
+      int curr = 0;
+      Node holdReference = headReference;
+
+      while (curr < index && holdReference != null) {
+        curr++;
+        holdReference = holdReference.getReferenceToNextNode();
+      }
+
+
+      Object old = holdReference.getCargoReference();
+      holdReference.setCargoReference(val);
+
+      return old;
+    }
+
+    public Object get (int index) {
+
+      int curr = 0;
+      Node holdReference = headReference;
+
+      while (curr < index && holdReference != null) {
+        curr++;
+        holdReference = holdReference.getReferenceToNextNode();
+      }
+
+      return holdReference.getCargoReference();
+    }
 
     /**
       Append @value to the head of this list.
       @return true, in keeping with conventions yet to be discussed
      */
      public boolean addAsHead( Object val) {
-
+	Node holdReference = headReference;
+	headReference = new Node(val);
+	headReference.setReferenceToNextNode(holdReference);
 
         return true;
      }
