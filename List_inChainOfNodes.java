@@ -37,7 +37,8 @@ public class List_inChainOfNodes{
       String s = "[";
 
       while (holdReference != null) {
-        s += holdReference + ",";
+        s += holdReference.getCargoReference() + ",";
+	holdReference = holdReference.getReferenceToNextNode();
       }
 
       s += "]";
@@ -51,8 +52,24 @@ public class List_inChainOfNodes{
       @return true, in keeping with conventions yet to be discussed
      */
      public boolean addAsHead( Object val) {
+	Node holdReference = headReference;
 
+	headReference = new Node(val);
+	headReference.setReferenceToNextNode(holdReference);
 
         return true;
+     }
+
+     public boolean add (int index, Object val) {
+
+	Node holdReference = headReference;
+	int currentIndex = 0;
+	
+	while (currentIndex < index && holdReference != null) {
+	    holdReference = holdReference.getReferenceToNextNode();
+	    currentIndex++;
+	}
+
+	
      }
 }
