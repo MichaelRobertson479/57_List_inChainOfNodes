@@ -26,7 +26,8 @@ public class UserOfNode {
          System.out.println(
              "2-arg constructor obviates setReferenceToNextNode");
          Node twoArgCon = new Node( new String( "kiwi"), nextSet);
-        System.out.println( twoArgCon
-                          + System.lineSeparator());
+         System.out.println( twoArgCon
+                           + System.lineSeparator());
+                    System.out.println(twoArgCon.getCargoReference());
     }
 }

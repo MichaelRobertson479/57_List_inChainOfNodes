@@ -34,11 +34,11 @@ public class List_inChainOfNodes{
       */
     public String toString() {
       Node holdReference = headReference;
-      String s = "[";
+      String s = size() + "[";
 
       while (holdReference != null) {
-        s += holdReference.getCargoReference() + ",";
-	holdReference = holdReference.getReferenceToNextNode();
+        s += (String) holdReference.getCargoReference() + ",";
+	      holdReference = holdReference.getReferenceToNextNode();
       }
 
       s += "]";
@@ -46,6 +46,35 @@ public class List_inChainOfNodes{
       return s;
     }
 
+    public Object set (int index, Object val) {
+
+      int curr = 0;
+      Node holdReference = headReference;
+
+      while (curr < index && holdReference != null) {
+        curr++;
+        holdReference = holdReference.getReferenceToNextNode();
+      }
+
+
+      Object old = holdReference.getCargoReference();
+      holdReference.setCargoReference(val);
+
+      return old;
+    }
+
+    public Object get (int index) {
+
+      int curr = 0;
+      Node holdReference = headReference;
+
+      while (curr < index && holdReference != null) {
+        curr++;
+        holdReference = holdReference.getReferenceToNextNode();
+      }
+
+      return holdReference.getCargoReference();
+    }
 
     /**
       Append @value to the head of this list.
@@ -53,7 +82,6 @@ public class List_inChainOfNodes{
      */
      public boolean addAsHead( Object val) {
 	Node holdReference = headReference;
-
 	headReference = new Node(val);
 	headReference.setReferenceToNextNode(holdReference);
 
@@ -62,12 +90,56 @@ public class List_inChainOfNodes{
 
      public boolean add (int index, Object val) {
 
-	Node holdReference = headReference;
-	int currentIndex = 0;
+	if (index == 0)
+	addAsHead(val);
+
+	else {
+       int curr = 0;
+       Node holdReference = headReference;
+
+       while (curr < index && holdReference != null) {
+         curr++;
+         holdReference = holdReference.getReferenceToNextNode();
+       }
+
+       curr = 0;
+       Node endReference = headReference;
+
+       while (curr < (index - 1)) {
+         curr++;
+         endReference = endReference.getReferenceToNextNode();
+       }
+
+	endReference.setReferenceToNextNode(new Node(val, holdReference));
+	}
+	return true;
 	
-	while (currentIndex < index && holdReference != null) {
-	    holdReference = holdReference.getReferenceToNextNode();
-	    currentIndex++;
+     }
+
+     public Object remove (int index) {
+
+	if(index == (size() - 1)) {
+	 int curr = 0;
+         Node holdReference = headReference;
+
+       while (holdReference.getReferenceToNextNode().getReferenceToNextNode() != null) {
+         curr++;
+         holdReference = holdReference.getReferenceToNextNode();
+       }
+	return holdReference.getReferenceToNextNode().getCargoReference();
+	holdReference.setReferenceToNextNode(null);
+	
+      }
+	
+	else{
+       int curr = 0;
+       Node holdReference = headReference;
+
+       while (curr < index && holdReference != null) {
+         curr++;
+         holdReference = holdReference.getReferenceToNextNode();
+return holdReference.getReferenceToNextNode().getCargoReference();
+       }
 	}
 
 	

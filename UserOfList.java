@@ -9,7 +9,7 @@ public class UserOfList {
 
         // // the spec requests that toString include the size
          System.out.println( "empty list: " + list
-                          + System.lineSeparator());
+                           + System.lineSeparator());
 
         // /* Populate the list with elements.
            // Create the test data in an array, for the programming
@@ -18,12 +18,16 @@ public class UserOfList {
          String[] elements = new String[]{"y","u","t","S",};
             // /* convenient syntax      ^^^^^^^^^^^^^^^^^^^^
                // for convenient way to init an array of Strings */
-         //int elemIndex;
-         for( String elem : elements ) {
+        int elemIndex;
+        for( String elem : elements ) {
              list.addAsHead( elem);
              System.out.println( "number of elements: " + list.size() );
          }
          System.out.println( "populated list: " + list
                            + System.lineSeparator());
+         list.set(2,"pi");
+	 list.add(0,"tau");
+	list.remove(list.size() - 1);
+         System.out.println(list);
     }
 }
