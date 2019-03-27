@@ -94,54 +94,50 @@ public class List_inChainOfNodes{
 	addAsHead(val);
 
 	else {
-       int curr = 0;
-       Node holdReference = headReference;
+        	int curr = 0;
+       		Node holdReference = headReference;
 
-       while (curr < index && holdReference != null) {
-         curr++;
-         holdReference = holdReference.getReferenceToNextNode();
-       }
+       		while (curr < index && holdReference != null) {
+         		curr++;
+         		holdReference = holdReference.getReferenceToNextNode();
+       		}
 
-       curr = 0;
-       Node endReference = headReference;
-
-       while (curr < (index - 1)) {
-         curr++;
-         endReference = endReference.getReferenceToNextNode();
-       }
-
-	endReference.setReferenceToNextNode(new Node(val, holdReference));
-	}
-	return true;
+      	 	curr = 0;
+      	 	Node endReference = headReference;
 	
+       		while (curr < (index - 1)) {
+        		curr++;
+         		endReference = endReference.getReferenceToNextNode();
+       		}
+
+		endReference.setReferenceToNextNode(new Node(val, holdReference));
+	}
+
+	return true;
      }
 
      public Object remove (int index) {
 
-	if(index == (size() - 1)) {
-	 int curr = 0;
-         Node holdReference = headReference;
-
-       while (holdReference.getReferenceToNextNode().getReferenceToNextNode() != null) {
-         curr++;
-         holdReference = holdReference.getReferenceToNextNode();
-       }
-	return holdReference.getReferenceToNextNode().getCargoReference();
-	holdReference.setReferenceToNextNode(null);
-	
-      }
-	
-	else{
-       int curr = 0;
-       Node holdReference = headReference;
-
-       while (curr < index && holdReference != null) {
-         curr++;
-         holdReference = holdReference.getReferenceToNextNode();
-return holdReference.getReferenceToNextNode().getCargoReference();
-       }
+	if (index == 0) {
+		Node removed = headReference;
+		headReference = headReference.getReferenceToNextNode();
+		return removed.getCargoReference();
 	}
 
+	else {
+		//general case
 	
+		int curr = 0;
+        	Node holdReference = headReference;
+
+        	while (curr < (index - 1)) {
+         		curr++;
+          		holdReference = holdReference.getReferenceToNextNode();
+        	}
+
+		Node removed = holdReference.getReferenceToNextNode();
+		holdReference.setReferenceToNextNode(holdReference.getReferenceToNextNode().getReferenceToNextNode());
+		return removed.getCargoReference();
+	}
      }
 }
